@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.gmail.ytabuchi.xlsoft.blesample">
-	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="22" />
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="22" />
 	<uses-permission android:name="android.permission.BLUETOOTH" />
 	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
 	<application android:label="BleSample"></application>
 </manifest>

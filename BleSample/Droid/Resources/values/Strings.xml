@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string
-    name="hello">Connect</string>
+  <string
+    name="start">Start Scan</string>
+  <string
+    name="stop">Stop Scan</string>
 	<string
     name="app_name">BleSample.Droid</string>
 	<string
