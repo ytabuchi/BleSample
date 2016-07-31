@@ -6,4 +6,6 @@
     name="app_name">BleSample.Droid</string>
 	<string
 			name="ble_not_supported">This device does not support BLE.</string>
+	<string
+			name="error_bluetooth_not_supported">This device does </string>
 </resources>

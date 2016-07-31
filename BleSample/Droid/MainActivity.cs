@@ -36,6 +36,14 @@ namespace BleSample.Droid
             BluetoothManager manager = (BluetoothManager)GetSystemService(Context.BluetoothService); // using Android.Content;
             mBluetoothAdapter = manager.Adapter;
 
+            // Checks if Bluetooth is supported on the device.
+            if (mBluetoothAdapter == null)
+            {
+                Toast.MakeText(this, Resource.String.error_bluetooth_not_supported, ToastLength.Short).Show();
+                Finish();
+                return;
+            }
+
             var button = FindViewById<Button>(Resource.Id.myButton);
             button.Click += (sender, e) =>
             {
