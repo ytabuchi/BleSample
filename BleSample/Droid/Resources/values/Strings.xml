@@ -4,4 +4,6 @@
     name="hello">Connect</string>
 	<string
     name="app_name">BleSample.Droid</string>
+	<string
+			name="ble_not_supported">This device does not support BLE.</string>
 </resources>
