@@ -24,6 +24,7 @@ namespace BleSample.Droid
         //bool mScanning;
 
         BleScanCallback scanCallback = new BleScanCallback();
+        BleGattCallback gattCallback = new BleGattCallback();
 
         string deviceAddress;
         TextView deviceLabel;
@@ -73,7 +74,8 @@ namespace BleSample.Droid
             var connectButton = FindViewById<Button>(Resource.Id.connectButton);
             connectButton.Click += (sender, e) =>
             {
-
+                BluetoothDevice device = adapter.GetRemoteDevice(deviceAddress);
+                BluetoothGatt mBluetoothGatt = device.ConnectGatt(this, false, gattCallback);
             };
 
         }
@@ -164,6 +166,33 @@ namespace BleSample.Droid
             base.OnScanFailed(errorCode);
 
             System.Diagnostics.Debug.WriteLine($"Error has occurred: {errorCode}");
+        }
+    }
+
+    public class BleGattCallback : BluetoothGattCallback
+    {
+        /// <summary>
+        /// When success to connect, get true status ??
+        /// </summary>
+        /// <param name="gatt"></param>
+        /// <param name="status"></param>
+        /// <param name="newState"></param>
+        public override void OnConnectionStateChange(BluetoothGatt gatt, [GeneratedEnum] GattStatus status, [GeneratedEnum] ProfileState newState)
+        {
+            base.OnConnectionStateChange(gatt, status, newState);
+
+            System.Diagnostics.Debug.WriteLine(status);
+        }
+
+        public override void OnServicesDiscovered(BluetoothGatt gatt, [GeneratedEnum] GattStatus status)
+        {
+            base.OnServicesDiscovered(gatt, status);
+
+            foreach (var service in gatt.Services)
+            {
+                System.Diagnostics.Debug.WriteLine(service);
+            }
+            
         }
     }
 }
