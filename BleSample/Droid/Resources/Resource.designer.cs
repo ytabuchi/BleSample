@@ -44,6 +44,12 @@ namespace BleSample.Droid
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f050003
+			public const int connectButton = 2131034115;
+			
+			// aapt resource value: 0x7f050002
+			public const int deviceLabel = 2131034114;
+			
 			// aapt resource value: 0x7f050000
 			public const int startButton = 2131034112;
 			
@@ -95,14 +101,17 @@ namespace BleSample.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040002
-			public const int app_name = 2130968578;
-			
 			// aapt resource value: 0x7f040003
-			public const int ble_not_supported = 2130968579;
+			public const int app_name = 2130968579;
 			
 			// aapt resource value: 0x7f040004
-			public const int error_bluetooth_not_supported = 2130968580;
+			public const int ble_not_supported = 2130968580;
+			
+			// aapt resource value: 0x7f040002
+			public const int connect = 2130968578;
+			
+			// aapt resource value: 0x7f040005
+			public const int error_bluetooth_not_supported = 2130968581;
 			
 			// aapt resource value: 0x7f040000
 			public const int start = 2130968576;

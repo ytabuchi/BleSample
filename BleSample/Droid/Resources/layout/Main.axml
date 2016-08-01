@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="8dp">
     <Button
         android:id="@+id/startButton"
         android:layout_width="match_parent"
@@ -13,4 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/stopButton" />
+    <TextView
+        android:text="Device:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/deviceLabel" />
+    <Button
+        android:text="@string/connect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/connectButton" />
 </LinearLayout>

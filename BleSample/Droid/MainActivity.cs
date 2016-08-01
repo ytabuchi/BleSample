@@ -25,6 +25,9 @@ namespace BleSample.Droid
 
         BleScanCallback scanCallback = new BleScanCallback();
 
+        string deviceAddress;
+        TextView deviceLabel;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -53,6 +56,8 @@ namespace BleSample.Droid
                 return;
             }
 
+            deviceLabel = FindViewById<TextView>(Resource.Id.deviceLabel);
+
             var startButton = FindViewById<Button>(Resource.Id.startButton);
             startButton.Click += (sender, e) =>
             {
@@ -60,9 +65,15 @@ namespace BleSample.Droid
             };
 
             var stopButton = FindViewById<Button>(Resource.Id.stopButton);
-            stopButton.Click += (sender, e) => 
+            stopButton.Click += (sender, e) =>
             {
                 ScanLeDevice(false);
+            };
+
+            var connectButton = FindViewById<Button>(Resource.Id.connectButton);
+            connectButton.Click += (sender, e) =>
+            {
+
             };
 
         }
@@ -93,7 +104,8 @@ namespace BleSample.Droid
 
                 // Start scan.
                 scanner.StartScan(filterList, scanSettings, scanCallback);
-                
+                //scanner.StartScan(scanCallback);
+
 
             }
             else
@@ -105,6 +117,13 @@ namespace BleSample.Droid
         private void ScanCallback_ScanResultEvent(BluetoothDevice device, int rssi, ScanRecord record)
         {
             System.Diagnostics.Debug.WriteLine($"DeviceName: {device.Name}, Level: {rssi}");
+            if (deviceAddress == null)
+            {
+                deviceAddress = device.Address;
+                deviceLabel.Text = $"Device: {device.Name}, Level: {rssi}";
+                scanner.StopScan(scanCallback);
+            }
+            //deviceLabel.Text = $"Device: {device.Name}, Level: {rssi}";
         }
     }
 

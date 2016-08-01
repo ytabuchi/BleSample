@@ -4,6 +4,8 @@
     name="start">Start Scan</string>
   <string
     name="stop">Stop Scan</string>
+  <string
+    name="connect">Connect</string>
 	<string
     name="app_name">BleSample.Droid</string>
 	<string
