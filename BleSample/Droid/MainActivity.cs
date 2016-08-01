@@ -7,6 +7,7 @@ using Android.Widget;
 using Android.OS;
 using Android.Bluetooth;
 using Android.Bluetooth.LE;
+
 namespace BleSample.Droid
 {
     [Activity(Label = "BleSample", MainLauncher = true, Icon = "@mipmap/icon")]
