@@ -131,7 +131,7 @@ namespace BleSample.Droid
             // result.Device     : 発見したBluetoothDevice
             // result.Rssi       : RSSI値
             // result.ScanRecord : スキャンレコード(byte[]で取得するなら、result.ScanRecord.GetBytes()で)
-            System.Diagnostics.Debug.WriteLine($"{result.}");
+            System.Diagnostics.Debug.WriteLine($"{result.Device}");
 
             ScanResultEvent(result.Device, result.Rssi, result.ScanRecord);
         }
