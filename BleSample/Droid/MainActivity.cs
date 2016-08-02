@@ -44,7 +44,7 @@ namespace BleSample.Droid
                 Finish();
             }
 
-            // BluetoothManager
+            // Set BluetoothManager, BluetoothAdapter, BluetoothLeScanner
             BluetoothManager manager = (BluetoothManager)GetSystemService(Context.BluetoothService); // using Android.Content;
             BluetoothAdapter adapter = manager.Adapter;
             scanner = adapter.BluetoothLeScanner;
@@ -75,7 +75,7 @@ namespace BleSample.Droid
             connectButton.Click += (sender, e) =>
             {
                 BluetoothDevice device = adapter.GetRemoteDevice(deviceAddress);
-                BluetoothGatt mBluetoothGatt = device.ConnectGatt(this, false, gattCallback);
+                var mBluetoothGatt = device.ConnectGatt(this, false, gattCallback);
             };
 
         }
@@ -89,7 +89,7 @@ namespace BleSample.Droid
                 // http://blog.techfirm.co.jp/2015/11/30/android-5-0-ble%E3%81%AEbluetoothlescanner%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/
                 // see this article for Android
 
-                // Build scan filter and add it to list.
+                // Build scan filter and add it to list. (ぶるタグ)
                 ScanFilter scanFilter = new ScanFilter.Builder()
                     .SetDeviceName("LBT-VRU01")
                     .Build();
@@ -105,8 +105,8 @@ namespace BleSample.Droid
                 scanCallback.ScanResultEvent += ScanCallback_ScanResultEvent;
 
                 // Start scan.
-                scanner.StartScan(filterList, scanSettings, scanCallback);
-                //scanner.StartScan(scanCallback);
+                //scanner.StartScan(filterList, scanSettings, scanCallback);
+                scanner.StartScan(scanCallback);
 
 
             }
@@ -169,10 +169,11 @@ namespace BleSample.Droid
         }
     }
 
+
     public class BleGattCallback : BluetoothGattCallback
     {
         /// <summary>
-        /// When success to connect, get true status ??
+        /// This method is called when BluetoothGatt connection status is changed.
         /// </summary>
         /// <param name="gatt"></param>
         /// <param name="status"></param>
@@ -182,7 +183,22 @@ namespace BleSample.Droid
             base.OnConnectionStateChange(gatt, status, newState);
 
             System.Diagnostics.Debug.WriteLine(status);
+            System.Diagnostics.Debug.WriteLine(newState); // If Connected, get enum connected.
+
+            // If Connected, newState will be "ProfileState.Connected".
+            if (newState == ProfileState.Connected)
+            {
+                // Will recieve service discovered return.
+                gatt.DiscoverServices();
+            }
+            else if (newState == ProfileState.Disconnected)
+            {
+                // do something when disconnected.
+            }
+
         }
+
+        
 
         public override void OnServicesDiscovered(BluetoothGatt gatt, [GeneratedEnum] GattStatus status)
         {
@@ -190,7 +206,7 @@ namespace BleSample.Droid
 
             foreach (var service in gatt.Services)
             {
-                System.Diagnostics.Debug.WriteLine(service);
+                System.Diagnostics.Debug.WriteLine($"【Services】: {service}, {service.Characteristics}, {service.Uuid}");
             }
             
         }
