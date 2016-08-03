@@ -14,9 +14,6 @@ namespace BleSample.Droid
     [Activity(Label = "BleSample", MainLauncher = true, Icon = "@mipmap/icon")]
     public class MainActivity : Activity
     {
-        // UUID of LBT-VRU01
-        const string uuid = "10B568BD-5CED-10E6-D467-EB3FBA189A95";
-
         BluetoothLeScanner scanner;
 
         // Use handler to timeout.
@@ -182,7 +179,6 @@ namespace BleSample.Droid
         {
             base.OnConnectionStateChange(gatt, status, newState);
 
-            System.Diagnostics.Debug.WriteLine(status);
             System.Diagnostics.Debug.WriteLine(newState); // If Connected, get enum connected.
 
             // If Connected, newState will be "ProfileState.Connected".
@@ -195,20 +191,49 @@ namespace BleSample.Droid
             {
                 // do something when disconnected.
             }
-
         }
 
-        
-
+        /// <summary>
+        /// Called when service on connected device will be found.
+        /// </summary>
+        /// <param name="gatt"></param>
+        /// <param name="status"></param>
         public override void OnServicesDiscovered(BluetoothGatt gatt, [GeneratedEnum] GattStatus status)
         {
             base.OnServicesDiscovered(gatt, status);
+            // Immediate Alert service UUID of LBT-VRU01
+            const string uuidAlertService = "00001802-0000-1000-8000-00805f9b34fb";
+            const string uuidAlertCharcteristics = "00002a06-0000-1000-8000-00805f9b34fb";
 
-            foreach (var service in gatt.Services)
+            // Serviceを取得して
+            BluetoothGattService service = gatt.GetService(Java.Util.UUID.FromString(uuidAlertService));
+            // キャラクタリスティックを取得
+            BluetoothGattCharacteristic characteristic = service.GetCharacteristic(Java.Util.UUID.FromString(uuidAlertCharcteristics));
+            //// Notify/Indicateを有効に
+            //gatt.SetCharacteristicNotification(characteristic, true);
+
+            foreach (var x in service.Characteristics)
             {
-                System.Diagnostics.Debug.WriteLine($"【Services】: {service}, {service.Characteristics}, {service.Uuid}");
+                System.Diagnostics.Debug.WriteLine($"【Characteristics】: {x}, {x.Uuid}, {x.Permissions}");
             }
-            
+
+
+
+            //characteristic.SetValue("02");
+            //gatt.WriteCharacteristic(characteristic);
+        }
+
+        /// <summary>
+        /// Called when charcteristics has read.
+        /// </summary>
+        /// <param name="gatt"></param>
+        /// <param name="characteristic"></param>
+        /// <param name="status"></param>
+        public override void OnCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, [GeneratedEnum] GattStatus status)
+        {
+            base.OnCharacteristicRead(gatt, characteristic, status);
+
+            System.Diagnostics.Debug.WriteLine($"【read】: {characteristic.Uuid}");
         }
     }
 }
