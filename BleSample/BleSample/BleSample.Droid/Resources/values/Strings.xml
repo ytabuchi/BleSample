@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="ScanButton">Scan/Rescan</string>
+	<string name="app_name">BleSample</string>
+  <string name="ble_not_supported">This device does not support BLE.</string>
+  <string name="error_bluetooth_not_supported">This device does not support Bluetooth</string>
+</resources>
