@@ -49,7 +49,7 @@ namespace BleSample.Droid
                 StartActivity(intent);
             };
 
-            // 再度BLuetoothManager,BluetoothAdapterを用意する
+            // 再度BLuetoothManager,BluetoothAdapterを用意する（つらい
             BluetoothManager manager = (BluetoothManager)GetSystemService(BluetoothService);
             BluetoothAdapter adapter = manager.Adapter;
 
@@ -66,7 +66,6 @@ namespace BleSample.Droid
 
         private void GattCallback_ServicesDiscoveredEvent(BluetoothGatt gatt)
         {
-
             foreach (var item in gatt.Services)
             {
                 gattServices.Add(item.Uuid.ToString());

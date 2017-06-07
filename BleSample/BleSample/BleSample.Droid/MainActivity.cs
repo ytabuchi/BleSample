@@ -20,7 +20,7 @@ namespace BleSample.Droid
         BluetoothLeScanner scanner;
         BleScanCallback scanCallback = new BleScanCallback();
         ListView listView;
-        List<BleDeviceData> bleDevices;
+        List<BleDeviceData> bleDevices = new List<BleDeviceData>();
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -50,8 +50,6 @@ namespace BleSample.Droid
             var scanButton = FindViewById<Button>(Resource.Id.scanButton);
             scanButton.Click += (sender, e) =>
             {
-                bleDevices = new List<BleDeviceData>();
-
                 scanCallback.ScanResultEvent += ScanCallback_ScanResultEvent;
                 scanner.StartScan(scanCallback);
                 Thread.Sleep(5000);
@@ -72,16 +70,8 @@ namespace BleSample.Droid
         private void ScanCallback_ScanResultEvent(BluetoothDevice device, int rssi, ScanRecord record)
         {
             // 同じアイテムならListに追加しない。
-            if (bleDevices.Count == 0)
-                bleDevices.Add(new BleDeviceData { Name = device.Name, Id = device.Address });
-            else
-            {
-                foreach (var item in bleDevices)
-                {
-                    if (!item.Id.Contains(device.Address))
-                        bleDevices.Add(new BleDeviceData { Name = device.Name ?? "Unknown", Id = device.Address });
-                }
-            }
+            if (bleDevices.Where(x => x.Id.Contains(device.Address)).Count() == 0)
+                bleDevices.Add(new BleDeviceData { Name = device.Name ?? "Unknown", Id = device.Address });
 
             // MainThreadで処理する。
             RunOnUiThread(() =>
