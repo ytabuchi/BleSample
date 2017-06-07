@@ -27,7 +27,7 @@ namespace BleSample.Droid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.ServiceList);
 
-            // Intent‚ðŽó‚¯Žæ‚ê‚½‚çTextView‚É”½‰f‚³‚¹‚é
+            // Intentã‚’å—ã‘å–ã‚ŒãŸã‚‰TextViewã«åæ˜ ã•ã›ã‚‹
             var recievedData = Intent.GetStringArrayExtra("data") ?? null;
             if (recievedData != null)
             {
@@ -49,11 +49,11 @@ namespace BleSample.Droid
                 StartActivity(intent);
             };
 
-            // Ä“xBLuetoothManager,BluetoothAdapter‚ð—pˆÓ‚·‚é
+            // å†åº¦BLuetoothManager,BluetoothAdapterã‚’ç”¨æ„ã™ã‚‹
             BluetoothManager manager = (BluetoothManager)GetSystemService(BluetoothService);
             BluetoothAdapter adapter = manager.Adapter;
 
-            // deviceAddress‚ªŽæ“¾o—ˆ‚Ä‚¢‚ê‚ÎƒfƒoƒCƒX‚ÉÚ‘±‚µƒT[ƒrƒX‚ðŽæ“¾‚·‚é
+            // deviceAddressãŒå–å¾—å‡ºæ¥ã¦ã„ã‚Œã°ãƒ‡ãƒã‚¤ã‚¹ã«æŽ¥ç¶šã—ã‚µãƒ¼ãƒ“ã‚¹ã‚’å–å¾—ã™ã‚‹
             if (deviceAddress != null)
             {
                 BluetoothDevice device = adapter.GetRemoteDevice(deviceAddress);
@@ -71,11 +71,11 @@ namespace BleSample.Droid
             {
                 gattServices.Add(item.Uuid.ToString());
 
-                System.Diagnostics.Debug.WriteLine($"yServicezUUID:{item.Uuid}");
+                System.Diagnostics.Debug.WriteLine($"ã€Serviceã€‘UUID:{item.Uuid}");
             }
             var arry = gattServices.ToArray();
 
-            // Main Thread‚Åˆ—‚³‚¹‚éB
+            // Main Threadã§å‡¦ç†ã•ã›ã‚‹ã€‚
             RunOnUiThread(() =>
             {
                 listView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, arry);

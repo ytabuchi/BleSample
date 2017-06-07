@@ -16,29 +16,29 @@ namespace BleSample.Droid
 {
     public class BleScanCallback : ScanCallback
     {
-        // ŠO•”‚©‚çE‚¦‚é‚æ‚¤‚ÉƒCƒxƒ“ƒg‚ğ—pˆÓ
+        // å¤–éƒ¨ã‹ã‚‰æ‹¾ãˆã‚‹ã‚ˆã†ã«ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç”¨æ„
         public event Action<BluetoothDevice, int, ScanRecord> ScanResultEvent;
 
-        // ƒXƒLƒƒƒ“Œ‹‰Ê‚ğ“¾‚é‚Æ”­‰Î‚·‚éƒƒ\ƒbƒh
+        // ã‚¹ã‚­ãƒ£ãƒ³çµæœã‚’å¾—ã‚‹ã¨ç™ºç«ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
         public override void OnScanResult([GeneratedEnum] ScanCallbackType callbackType, ScanResult result)
         {
             base.OnScanResult(callbackType, result);
 
-            // result.Device     : ”­Œ©‚µ‚½BluetoothDevice
-            // result.Rssi       : RSSI’l
-            // result.ScanRecord : ƒXƒLƒƒƒ“ƒŒƒR[ƒh(byte[]‚Åæ“¾‚·‚é‚È‚çAresult.ScanRecord.GetBytes()‚Å)
+            // result.Device     : ç™ºè¦‹ã—ãŸBluetoothDevice
+            // result.Rssi       : RSSIå€¤
+            // result.ScanRecord : ã‚¹ã‚­ãƒ£ãƒ³ãƒ¬ã‚³ãƒ¼ãƒ‰(byte[]ã§å–å¾—ã™ã‚‹ãªã‚‰ã€result.ScanRecord.GetBytes()ã§)
             ScanResultEvent(result.Device, result.Rssi, result.ScanRecord);
         }
 
-        // ƒXƒLƒƒƒ“ƒGƒ‰[‚É”­‰Î‚·‚éƒƒ\ƒbƒh
+        // ã‚¹ã‚­ãƒ£ãƒ³ã‚¨ãƒ©ãƒ¼æ™‚ã«ç™ºç«ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
         public override void OnScanFailed([GeneratedEnum] ScanFailure errorCode)
         {
             base.OnScanFailed(errorCode);
 
-            // ƒXƒLƒƒƒ“‚ª¸”s‚µ‚½‚Ìˆ—‚ğ‹Lq
+            // ã‚¹ã‚­ãƒ£ãƒ³ãŒå¤±æ•—ã—ãŸæ™‚ã®å‡¦ç†ã‚’è¨˜è¿°
         }
 
-        // •K—v‚É‰‚¶‚Ä‹Lq
+        // å¿…è¦ã«å¿œã˜ã¦è¨˜è¿°
         //public override void OnBatchScanResults(IList<ScanResult> results)
         //{
         //    base.OnBatchScanResults(results);

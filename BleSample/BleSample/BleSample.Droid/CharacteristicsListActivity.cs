@@ -28,7 +28,7 @@ namespace BleSample.Droid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.CharacteristicsList);
 
-            // Intent‚ðŽó‚¯Žæ‚ê‚½‚çTextView‚É”½‰f‚³‚¹‚éB
+            // Intentã‚’å—ã‘å–ã‚ŒãŸã‚‰TextViewã«åæ˜ ã•ã›ã‚‹ã€‚
             var recievedData = Intent.GetStringArrayExtra("data") ?? null;
             if (recievedData != null)
             {
@@ -45,7 +45,7 @@ namespace BleSample.Droid
                 StartActivity(intent);
             };
 
-            // Ä“xBLuetoothManager,BluetoothAdapter‚ð—pˆÓ‚·‚é
+            // å†åº¦BLuetoothManager,BluetoothAdapterã‚’ç”¨æ„ã™ã‚‹
             BluetoothManager manager = (BluetoothManager)GetSystemService(BluetoothService);
             BluetoothAdapter adapter = manager.Adapter;
 
@@ -57,7 +57,7 @@ namespace BleSample.Droid
 
         private void GattCallback_ServicesDiscoveredEvent(BluetoothGatt gatt)
         {
-            // Žó‚¯Žæ‚Á‚½UUID‚ÉÚ‘±‚µ‚ÄƒLƒƒƒ‰ƒNƒ^ƒŠƒXƒeƒBƒbƒN‚ðŽæ“¾
+            // å—ã‘å–ã£ãŸUUIDã«æŽ¥ç¶šã—ã¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’å–å¾—
             var service = gatt.GetService(Java.Util.UUID.FromString(serviceUuid));
             var characteristics = service.Characteristics;
 
@@ -72,7 +72,7 @@ namespace BleSample.Droid
             }
             //var arry = gattCharacteristics.ToArray();
 
-            // Main Thread‚Åˆ—‚³‚¹‚éB
+            // Main Threadã§å‡¦ç†ã•ã›ã‚‹ã€‚
             RunOnUiThread(() =>
             {
                 //listView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, arry);

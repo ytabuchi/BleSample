@@ -18,24 +18,24 @@ namespace BleSample.Droid
         public event Action<BluetoothGatt> ServicesDiscoveredEvent;
         public event Action<BluetoothGatt, BluetoothGattCharacteristic, GattStatus> CharacteristicReadEvent;
 
-        // Ú‘±ó‹µ‚ª•Ï‰»‚µ‚½‚É”­‰Î‚·‚éƒƒ\ƒbƒh
+        // æ¥ç¶šçŠ¶æ³ãŒå¤‰åŒ–ã—ãŸæ™‚ã«ç™ºç«ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
         public override void OnConnectionStateChange(BluetoothGatt gatt, [GeneratedEnum] GattStatus status, [GeneratedEnum] ProfileState newState)
         {
             base.OnConnectionStateChange(gatt, status, newState);
 
             if (newState == ProfileState.Connected)
             {
-                // Ú‘±ó‘Ô‚É‚È‚Á‚½‚çƒT[ƒrƒX‚ğŒŸõ‚·‚é
-                // ƒT[ƒrƒX‚ªŒ©‚Â‚©‚Á‚½‚çOnServicesDiscovered‚ª”­‰Î
+                // æ¥ç¶šçŠ¶æ…‹ã«ãªã£ãŸã‚‰ã‚µãƒ¼ãƒ“ã‚¹ã‚’æ¤œç´¢ã™ã‚‹
+                // ã‚µãƒ¼ãƒ“ã‚¹ãŒè¦‹ã¤ã‹ã£ãŸã‚‰OnServicesDiscoveredãŒç™ºç«
                 gatt.DiscoverServices();
             }
             else if(newState == ProfileState.Disconnected)
             {
-                //ƒ|ƒbƒvƒAƒbƒv‚È‚Ç‚ğo‚µ‚ÄA”CˆÓ‚ÌActivity‚ÉˆÚ“®‚·‚é‚È‚Ç‚µ‚Ä‚­‚¾‚³‚¢
+                //ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ãªã©ã‚’å‡ºã—ã¦ã€ä»»æ„ã®Activityã«ç§»å‹•ã™ã‚‹ãªã©ã—ã¦ãã ã•ã„
             }
         }
 
-        // Ú‘±‚µ‚½ƒfƒoƒCƒX‚ÌƒT[ƒrƒX‚ªŒ©‚Â‚©‚Á‚½‚É”­‰Î‚·‚éƒƒ\ƒbƒh
+        // æ¥ç¶šã—ãŸãƒ‡ãƒã‚¤ã‚¹ã®ã‚µãƒ¼ãƒ“ã‚¹ãŒè¦‹ã¤ã‹ã£ãŸæ™‚ã«ç™ºç«ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
         public override void OnServicesDiscovered(BluetoothGatt gatt, [GeneratedEnum] GattStatus status)
         {
             base.OnServicesDiscovered(gatt, status);
@@ -44,7 +44,7 @@ namespace BleSample.Droid
         }
 
         /// <summary>
-        /// ƒLƒƒƒ‰ƒNƒ^ƒŠƒXƒeƒBƒbƒN“Ç‚İ‚İ‚ÌƒCƒxƒ“ƒg
+        /// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚¹ãƒ†ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿æ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆ
         /// </summary>
         /// <param name="gatt"></param>
         /// <param name="characteristic"></param>
