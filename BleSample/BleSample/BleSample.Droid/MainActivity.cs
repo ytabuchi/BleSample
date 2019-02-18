@@ -11,6 +11,8 @@ using Android.Bluetooth;
 using Android.Bluetooth.LE;
 using Android.OS;
 using System.Threading;
+using Plugin.Permissions;
+using Plugin.CurrentActivity;
 
 namespace BleSample.Droid
 {
@@ -26,6 +28,10 @@ namespace BleSample.Droid
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
+
+            CrossCurrentActivity.Current.Init(this, bundle);
+
+            // Permissionのチェック
 
             // Bluetooth Low Energyがサポートされているかのチェック。
             if (!PackageManager.HasSystemFeature(Android.Content.PM.PackageManager.FeatureBluetoothLe))
@@ -78,6 +84,12 @@ namespace BleSample.Droid
             {
                 listView.Adapter = new SimpleListItem2_Adapter(this, bleDevices);
             });
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }
