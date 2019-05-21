@@ -53,7 +53,6 @@
     <Compile Include="BleDeviceData.cs" />
     <Compile Include="CharacteristicsListActivity.cs" />
     <Compile Include="CharacteristicsListAdapter.cs" />
-    <Compile Include="ScanActivity.cs" />
     <Compile Include="ServiceListActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -95,11 +94,6 @@
       <Project>{B83B9AB3-E13E-40C3-B10F-ADEA434CAC0D}</Project>
       <Name>BleSample.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\Scan.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Plugin.Permissions">
