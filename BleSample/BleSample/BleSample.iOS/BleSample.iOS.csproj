@@ -22,7 +22,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-<CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -90,7 +90,6 @@
     <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewController.designer.cs">
@@ -105,9 +104,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="Plugin.Permissions">
-      <HintPath>..\..\packages\Plugin.Permissions.3.0.0.12\lib\xamarinios10\Plugin.Permissions.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entitlements.plist" />
@@ -117,6 +113,11 @@
       <Project>{B83B9AB3-E13E-40C3-B10F-ADEA434CAC0D}</Project>
       <Name>BleSample.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Plugin.Permissions">
+      <Version>3.0.0.12</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ProjectExtensions>
